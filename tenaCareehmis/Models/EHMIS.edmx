@@ -1,0 +1,774 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="eHMISModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Federal_eHMIS_Aug19_2016.dbo.EthEhmis_AllFacilityWithID' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EthEhmis_AllFacilityWithID">
+          <Key>
+            <PropertyRef Name="DistrictId" />
+            <PropertyRef Name="FacilityTypeId" />
+            <PropertyRef Name="FacilityTypeName" />
+          </Key>
+          <Property Name="DistrictId" Type="bigint" Nullable="false" />
+          <Property Name="FacilityTypeId" Type="int" Nullable="false" />
+          <Property Name="FacilityTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="HMISCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="FacilityName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="HealthCenterID" Type="int" />
+          <Property Name="HealthCenterName" Type="nvarchar" MaxLength="100" />
+          <Property Name="WoredaId" Type="bigint" />
+          <Property Name="WoredaName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ZoneId" Type="bigint" />
+          <Property Name="ZoneName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="ReportingRegionName" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ReportingAdminSite" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ReportingDistrictId" Type="bigint" />
+          <Property Name="reportingFacilityTypeId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Federal_eHMIS_Aug19_2016.dbo.EthEhmis_HMISDenominator' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EthEhmis_HMISDenominator">
+          <Key>
+            <PropertyRef Name="DenominatorID" />
+          </Key>
+          <Property Name="DenominatorID" Type="int" Nullable="false" />
+          <Property Name="DenominatorName" Type="nvarchar(max)" />
+          <Property Name="Healthpost" Type="bit" />
+          <Property Name="HealthCenter" Type="bit" />
+          <Property Name="Hospital" Type="bit" />
+          <Property Name="WoredaHO" Type="bit" />
+          <Property Name="ZonalHD" Type="bit" />
+          <Property Name="RegionalHB" Type="bit" />
+          <Property Name="FMOH" Type="bit" />
+          <Property Name="Period" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EthEhmis_HMISValue">
+          <Key>
+            <PropertyRef Name="ValueID" />
+          </Key>
+          <Property Name="ValueID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LabelID" Type="int" Nullable="false" />
+          <Property Name="DataEleClass" Type="int" Nullable="false" />
+          <Property Name="FederalID" Type="int" Nullable="false" />
+          <Property Name="RegionID" Type="int" Nullable="false" />
+          <Property Name="ZoneID" Type="int" Nullable="false" />
+          <Property Name="WoredaID" Type="int" Nullable="false" />
+          <Property Name="LocationID" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Week" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="Quarter" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Value" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="FACILITTYPE" Type="int" Nullable="false" />
+          <Property Name="DateEntered" Type="datetime" Nullable="false" />
+          <Property Name="Editable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EthEHMIS_ImportedFiles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User" Type="varchar" MaxLength="50" />
+          <Property Name="FileName" Type="varchar(max)" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="FileSize" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EthioHIMS_QuarterHPDiseaseView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SNO" Type="nchar" MaxLength="10" />
+          <Property Name="Disease" Type="nvarchar(max)" />
+          <Property Name="M04" Type="int" />
+          <Property Name="M514" Type="int" />
+          <Property Name="M15" Type="int" />
+          <Property Name="F04" Type="int" />
+          <Property Name="F514" Type="int" />
+          <Property Name="F15" Type="int" />
+          <Property Name="Format" Type="int" />
+        </EntityType>
+        <EntityType Name="EthioHIMS_QuarterIPDDiseaseView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SNO" Type="nchar" MaxLength="10" />
+          <Property Name="Disease" Type="nvarchar(max)" />
+          <Property Name="M04" Type="int" />
+          <Property Name="M514" Type="int" />
+          <Property Name="M15" Type="int" />
+          <Property Name="F04" Type="int" />
+          <Property Name="F514" Type="int" />
+          <Property Name="F15" Type="int" />
+          <Property Name="MM04" Type="int" />
+          <Property Name="MM514" Type="int" />
+          <Property Name="MM15" Type="int" />
+          <Property Name="MF04" Type="int" />
+          <Property Name="MF514" Type="int" />
+          <Property Name="MF15" Type="int" />
+          <Property Name="Format" Type="int" />
+          <Property Name="userDefined" Type="bit" />
+        </EntityType>
+        <EntityType Name="EthioHIMS_QuarterOPDDiseaseView4">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SNO" Type="nchar" MaxLength="10" />
+          <Property Name="Disease" Type="nvarchar(max)" />
+          <Property Name="M04" Type="int" />
+          <Property Name="M514" Type="int" />
+          <Property Name="M15" Type="int" />
+          <Property Name="F04" Type="int" />
+          <Property Name="F514" Type="int" />
+          <Property Name="F15" Type="int" />
+          <Property Name="Format" Type="int" />
+          <Property Name="userDefined" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Federal_eHMIS_Aug19_2016.dbo.EthioHIMS_ServiceDataElementsNew' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EthioHIMS_ServiceDataElementsNew">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="GroupID" Type="int" />
+          <Property Name="LabelID" Type="int" />
+          <Property Name="SNO" Type="nvarchar" MaxLength="20" />
+          <Property Name="ActivityHP" Type="nvarchar(max)" />
+          <Property Name="ActivityHC" Type="nvarchar(max)" />
+          <Property Name="ActivityWorHO" Type="nvarchar(max)" />
+          <Property Name="FullDescription" Type="nvarchar(max)" />
+          <Property Name="Category1" Type="nvarchar(max)" />
+          <Property Name="Category2" Type="nvarchar(max)" />
+          <Property Name="Category3" Type="nvarchar(max)" />
+          <Property Name="AnalysisDescription" Type="nvarchar(max)" />
+          <Property Name="GroupName" Type="nvarchar(max)" />
+          <Property Name="ShortActivityDesc" Type="nvarchar(max)" />
+          <Property Name="Lessthan" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Greaterthan" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DataType" Type="int" />
+          <Property Name="LessConstraintId" Type="int" />
+          <Property Name="GreaterConstraintId" Type="int" />
+          <Property Name="VerticalSumID" Type="int" />
+          <Property Name="PeriodType" Type="int" />
+          <Property Name="AggregationType" Type="int" />
+          <Property Name="Readonly" Type="bit" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="HasChild" Type="bit" />
+          <Property Name="SequenceNo" Type="int" />
+          <Property Name="HP" Type="bit" />
+          <Property Name="HC" Type="bit" />
+          <Property Name="HCHP" Type="bit" />
+          <Property Name="Hospital" Type="bit" />
+          <Property Name="WHO" Type="bit" />
+          <Property Name="ZHD" Type="bit" />
+          <Property Name="RHB" Type="bit" />
+          <Property Name="FMOH" Type="bit" />
+          <Property Name="Private" Type="bit" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="quarterTitleHC" Type="bit" />
+          <Property Name="quarterTitleHP" Type="bit" />
+          <Property Name="isArtPastValidate" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserDashboards">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dashboardSpec" Type="text" Nullable="false" />
+          <Property Name="dataSQL" Type="text" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Federal_eHMIS_Aug19_2016.dbo.v_EthEhmis_AllFacilityWithIDNew' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="v_EthEhmis_AllFacilityWithIDNew">
+          <Key>
+            
+            
+            <PropertyRef Name="HMISCode" />
+            
+            
+            
+            <PropertyRef Name="reportingFacilityTypeId" />
+          </Key>
+          <Property Name="DistrictId" Type="int" Nullable="false" />
+          <Property Name="FacilityTypeId" Type="tinyint" />
+          <Property Name="FacilityTypeName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="HMISCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="FacilityName" Type="nvarchar" MaxLength="255" />
+          <Property Name="HealthCenterID" Type="int" Nullable="false" />
+          <Property Name="HealthCenterName" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="WoredaId" Type="int" Nullable="false" />
+          <Property Name="WoredaName" Type="nvarchar(max)" />
+          <Property Name="ZoneId" Type="int" />
+          <Property Name="ZONENAME" Type="nvarchar(max)" />
+          <Property Name="RegionId" Type="int" />
+          <Property Name="ReportingRegionName" Type="nvarchar" MaxLength="255" />
+          <Property Name="ReportingAdminSite" Type="nvarchar(max)" />
+          <Property Name="ReportingDistrictId" Type="int" />
+          <Property Name="reportingFacilityTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="eHMISModelStoreContainer">
+          <EntitySet Name="EthEhmis_HMISValue" EntityType="Self.EthEhmis_HMISValue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EthEHMIS_ImportedFiles" EntityType="Self.EthEHMIS_ImportedFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EthioHIMS_QuarterHPDiseaseView" EntityType="Self.EthioHIMS_QuarterHPDiseaseView" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EthioHIMS_QuarterIPDDiseaseView" EntityType="Self.EthioHIMS_QuarterIPDDiseaseView" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EthioHIMS_QuarterOPDDiseaseView4" EntityType="Self.EthioHIMS_QuarterOPDDiseaseView4" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDashboards" EntityType="Self.UserDashboards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EthEhmis_AllFacilityWithID" EntityType="Self.EthEhmis_AllFacilityWithID" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EthEhmis_AllFacilityWithID].[DistrictId] AS [DistrictId], 
+    [EthEhmis_AllFacilityWithID].[FacilityTypeId] AS [FacilityTypeId], 
+    [EthEhmis_AllFacilityWithID].[FacilityTypeName] AS [FacilityTypeName], 
+    [EthEhmis_AllFacilityWithID].[HMISCode] AS [HMISCode], 
+    [EthEhmis_AllFacilityWithID].[FacilityName] AS [FacilityName], 
+    [EthEhmis_AllFacilityWithID].[HealthCenterID] AS [HealthCenterID], 
+    [EthEhmis_AllFacilityWithID].[HealthCenterName] AS [HealthCenterName], 
+    [EthEhmis_AllFacilityWithID].[WoredaId] AS [WoredaId], 
+    [EthEhmis_AllFacilityWithID].[WoredaName] AS [WoredaName], 
+    [EthEhmis_AllFacilityWithID].[ZoneId] AS [ZoneId], 
+    [EthEhmis_AllFacilityWithID].[ZoneName] AS [ZoneName], 
+    [EthEhmis_AllFacilityWithID].[RegionId] AS [RegionId], 
+    [EthEhmis_AllFacilityWithID].[ReportingRegionName] AS [ReportingRegionName], 
+    [EthEhmis_AllFacilityWithID].[ReportingAdminSite] AS [ReportingAdminSite], 
+    [EthEhmis_AllFacilityWithID].[ReportingDistrictId] AS [ReportingDistrictId], 
+    [EthEhmis_AllFacilityWithID].[reportingFacilityTypeId] AS [reportingFacilityTypeId]
+    FROM [dbo].[EthEhmis_AllFacilityWithID] AS [EthEhmis_AllFacilityWithID]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EthEhmis_HMISDenominator" EntityType="Self.EthEhmis_HMISDenominator" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EthEhmis_HMISDenominator].[DenominatorID] AS [DenominatorID], 
+    [EthEhmis_HMISDenominator].[DenominatorName] AS [DenominatorName], 
+    [EthEhmis_HMISDenominator].[Healthpost] AS [Healthpost], 
+    [EthEhmis_HMISDenominator].[HealthCenter] AS [HealthCenter], 
+    [EthEhmis_HMISDenominator].[Hospital] AS [Hospital], 
+    [EthEhmis_HMISDenominator].[WoredaHO] AS [WoredaHO], 
+    [EthEhmis_HMISDenominator].[ZonalHD] AS [ZonalHD], 
+    [EthEhmis_HMISDenominator].[RegionalHB] AS [RegionalHB], 
+    [EthEhmis_HMISDenominator].[FMOH] AS [FMOH], 
+    [EthEhmis_HMISDenominator].[Period] AS [Period]
+    FROM [dbo].[EthEhmis_HMISDenominator] AS [EthEhmis_HMISDenominator]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EthioHIMS_ServiceDataElementsNew" EntityType="Self.EthioHIMS_ServiceDataElementsNew" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EthioHIMS_ServiceDataElementsNew].[ID] AS [ID], 
+    [EthioHIMS_ServiceDataElementsNew].[GroupID] AS [GroupID], 
+    [EthioHIMS_ServiceDataElementsNew].[LabelID] AS [LabelID], 
+    [EthioHIMS_ServiceDataElementsNew].[SNO] AS [SNO], 
+    [EthioHIMS_ServiceDataElementsNew].[ActivityHP] AS [ActivityHP], 
+    [EthioHIMS_ServiceDataElementsNew].[ActivityHC] AS [ActivityHC], 
+    [EthioHIMS_ServiceDataElementsNew].[ActivityWorHO] AS [ActivityWorHO], 
+    [EthioHIMS_ServiceDataElementsNew].[FullDescription] AS [FullDescription], 
+    [EthioHIMS_ServiceDataElementsNew].[Category1] AS [Category1], 
+    [EthioHIMS_ServiceDataElementsNew].[Category2] AS [Category2], 
+    [EthioHIMS_ServiceDataElementsNew].[Category3] AS [Category3], 
+    [EthioHIMS_ServiceDataElementsNew].[AnalysisDescription] AS [AnalysisDescription], 
+    [EthioHIMS_ServiceDataElementsNew].[GroupName] AS [GroupName], 
+    [EthioHIMS_ServiceDataElementsNew].[ShortActivityDesc] AS [ShortActivityDesc], 
+    [EthioHIMS_ServiceDataElementsNew].[Lessthan] AS [Lessthan], 
+    [EthioHIMS_ServiceDataElementsNew].[Greaterthan] AS [Greaterthan], 
+    [EthioHIMS_ServiceDataElementsNew].[DataType] AS [DataType], 
+    [EthioHIMS_ServiceDataElementsNew].[LessConstraintId] AS [LessConstraintId], 
+    [EthioHIMS_ServiceDataElementsNew].[GreaterConstraintId] AS [GreaterConstraintId], 
+    [EthioHIMS_ServiceDataElementsNew].[VerticalSumID] AS [VerticalSumID], 
+    [EthioHIMS_ServiceDataElementsNew].[PeriodType] AS [PeriodType], 
+    [EthioHIMS_ServiceDataElementsNew].[AggregationType] AS [AggregationType], 
+    [EthioHIMS_ServiceDataElementsNew].[Readonly] AS [Readonly], 
+    [EthioHIMS_ServiceDataElementsNew].[ParentID] AS [ParentID], 
+    [EthioHIMS_ServiceDataElementsNew].[HasChild] AS [HasChild], 
+    [EthioHIMS_ServiceDataElementsNew].[SequenceNo] AS [SequenceNo], 
+    [EthioHIMS_ServiceDataElementsNew].[HP] AS [HP], 
+    [EthioHIMS_ServiceDataElementsNew].[HC] AS [HC], 
+    [EthioHIMS_ServiceDataElementsNew].[HCHP] AS [HCHP], 
+    [EthioHIMS_ServiceDataElementsNew].[Hospital] AS [Hospital], 
+    [EthioHIMS_ServiceDataElementsNew].[WHO] AS [WHO], 
+    [EthioHIMS_ServiceDataElementsNew].[ZHD] AS [ZHD], 
+    [EthioHIMS_ServiceDataElementsNew].[RHB] AS [RHB], 
+    [EthioHIMS_ServiceDataElementsNew].[FMOH] AS [FMOH], 
+    [EthioHIMS_ServiceDataElementsNew].[Private] AS [Private], 
+    [EthioHIMS_ServiceDataElementsNew].[Description] AS [Description], 
+    [EthioHIMS_ServiceDataElementsNew].[quarterTitleHC] AS [quarterTitleHC], 
+    [EthioHIMS_ServiceDataElementsNew].[quarterTitleHP] AS [quarterTitleHP], 
+    [EthioHIMS_ServiceDataElementsNew].[isArtPastValidate] AS [isArtPastValidate]
+    FROM [dbo].[EthioHIMS_ServiceDataElementsNew] AS [EthioHIMS_ServiceDataElementsNew]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_EthEhmis_AllFacilityWithIDNew" EntityType="Self.v_EthEhmis_AllFacilityWithIDNew" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_EthEhmis_AllFacilityWithIDNew].[DistrictId] AS [DistrictId], 
+    [v_EthEhmis_AllFacilityWithIDNew].[FacilityTypeId] AS [FacilityTypeId], 
+    [v_EthEhmis_AllFacilityWithIDNew].[FacilityTypeName] AS [FacilityTypeName], 
+    [v_EthEhmis_AllFacilityWithIDNew].[HMISCode] AS [HMISCode], 
+    [v_EthEhmis_AllFacilityWithIDNew].[FacilityName] AS [FacilityName], 
+    [v_EthEhmis_AllFacilityWithIDNew].[HealthCenterID] AS [HealthCenterID], 
+    [v_EthEhmis_AllFacilityWithIDNew].[HealthCenterName] AS [HealthCenterName], 
+    [v_EthEhmis_AllFacilityWithIDNew].[WoredaId] AS [WoredaId], 
+    [v_EthEhmis_AllFacilityWithIDNew].[WoredaName] AS [WoredaName], 
+    [v_EthEhmis_AllFacilityWithIDNew].[ZoneId] AS [ZoneId], 
+    [v_EthEhmis_AllFacilityWithIDNew].[ZONENAME] AS [ZONENAME], 
+    [v_EthEhmis_AllFacilityWithIDNew].[RegionId] AS [RegionId], 
+    [v_EthEhmis_AllFacilityWithIDNew].[ReportingRegionName] AS [ReportingRegionName], 
+    [v_EthEhmis_AllFacilityWithIDNew].[ReportingAdminSite] AS [ReportingAdminSite], 
+    [v_EthEhmis_AllFacilityWithIDNew].[ReportingDistrictId] AS [ReportingDistrictId], 
+    [v_EthEhmis_AllFacilityWithIDNew].[reportingFacilityTypeId] AS [reportingFacilityTypeId]
+    FROM [dbo].[v_EthEhmis_AllFacilityWithIDNew] AS [v_EthEhmis_AllFacilityWithIDNew]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eHMISModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EthEhmis_HMISValue">
+          <Key>
+            <PropertyRef Name="ValueID" />
+          </Key>
+          <Property Name="ValueID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LabelID" Type="Int32" Nullable="false" />
+          <Property Name="DataEleClass" Type="Int32" Nullable="false" />
+          <Property Name="FederalID" Type="Int32" Nullable="false" />
+          <Property Name="RegionID" Type="Int32" Nullable="false" />
+          <Property Name="ZoneID" Type="Int32" Nullable="false" />
+          <Property Name="WoredaID" Type="Int32" Nullable="false" />
+          <Property Name="LocationID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Week" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="Quarter" Type="Int32" Nullable="false" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="FACILITTYPE" Type="Int32" Nullable="false" />
+          <Property Name="DateEntered" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Editable" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EthioHIMS_QuarterHPDiseaseView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SNO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Disease" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="M04" Type="Int32" />
+          <Property Name="M514" Type="Int32" />
+          <Property Name="M15" Type="Int32" />
+          <Property Name="F04" Type="Int32" />
+          <Property Name="F514" Type="Int32" />
+          <Property Name="F15" Type="Int32" />
+          <Property Name="Format" Type="Int32" />
+        </EntityType>
+        <EntityType Name="EthioHIMS_QuarterIPDDiseaseView">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SNO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Disease" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="M04" Type="Int32" />
+          <Property Name="M514" Type="Int32" />
+          <Property Name="M15" Type="Int32" />
+          <Property Name="F04" Type="Int32" />
+          <Property Name="F514" Type="Int32" />
+          <Property Name="F15" Type="Int32" />
+          <Property Name="MM04" Type="Int32" />
+          <Property Name="MM514" Type="Int32" />
+          <Property Name="MM15" Type="Int32" />
+          <Property Name="MF04" Type="Int32" />
+          <Property Name="MF514" Type="Int32" />
+          <Property Name="MF15" Type="Int32" />
+          <Property Name="Format" Type="Int32" />
+          <Property Name="userDefined" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="EthioHIMS_QuarterOPDDiseaseView4">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SNO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Disease" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="M04" Type="Int32" />
+          <Property Name="M514" Type="Int32" />
+          <Property Name="M15" Type="Int32" />
+          <Property Name="F04" Type="Int32" />
+          <Property Name="F514" Type="Int32" />
+          <Property Name="F15" Type="Int32" />
+          <Property Name="Format" Type="Int32" />
+          <Property Name="userDefined" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="EthioHIMS_ServiceDataElementsNew">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="LabelID" Type="Int32" />
+          <Property Name="SNO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ActivityHP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActivityHC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActivityWorHO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnalysisDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortActivityDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lessthan" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Greaterthan" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DataType" Type="Int32" />
+          <Property Name="LessConstraintId" Type="Int32" />
+          <Property Name="GreaterConstraintId" Type="Int32" />
+          <Property Name="VerticalSumID" Type="Int32" />
+          <Property Name="PeriodType" Type="Int32" />
+          <Property Name="AggregationType" Type="Int32" />
+          <Property Name="Readonly" Type="Boolean" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="HasChild" Type="Boolean" />
+          <Property Name="SequenceNo" Type="Int32" />
+          <Property Name="HP" Type="Boolean" />
+          <Property Name="HC" Type="Boolean" />
+          <Property Name="HCHP" Type="Boolean" />
+          <Property Name="Hospital" Type="Boolean" />
+          <Property Name="WHO" Type="Boolean" />
+          <Property Name="ZHD" Type="Boolean" />
+          <Property Name="RHB" Type="Boolean" />
+          <Property Name="FMOH" Type="Boolean" />
+          <Property Name="Private" Type="Boolean" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="quarterTitleHC" Type="Boolean" />
+          <Property Name="quarterTitleHP" Type="Boolean" />
+          <Property Name="isArtPastValidate" Type="Boolean" />
+          <Property Name="Category1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Category3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="eHMISEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EthEhmis_HMISValue" EntityType="Self.EthEhmis_HMISValue" />
+          <EntitySet Name="EthioHIMS_QuarterHPDiseaseView" EntityType="Self.EthioHIMS_QuarterHPDiseaseView" />
+          <EntitySet Name="EthioHIMS_QuarterIPDDiseaseView" EntityType="Self.EthioHIMS_QuarterIPDDiseaseView" />
+          <EntitySet Name="EthioHIMS_QuarterOPDDiseaseView4" EntityType="Self.EthioHIMS_QuarterOPDDiseaseView4" />
+          <EntitySet Name="EthioHIMS_ServiceDataElementsNew" EntityType="Self.EthioHIMS_ServiceDataElementsNew" />
+          <EntitySet Name="EthEhmis_HMISDenominator" EntityType="eHMISModel.EthEhmis_HMISDenominator" />
+          <EntitySet Name="v_EthEhmis_AllFacilityWithIDNew" EntityType="eHMISModel.v_EthEhmis_AllFacilityWithIDNew" />
+          <EntitySet Name="EthEhmis_AllFacilityWithID" EntityType="eHMISModel.EthEhmis_AllFacilityWithID" />
+          <EntitySet Name="EthEHMIS_ImportedFiles" EntityType="eHMISModel.EthEHMIS_ImportedFiles" />
+          <EntitySet Name="UserDashboards" EntityType="eHMISModel.UserDashboard" />
+        </EntityContainer>
+        <EntityType Name="EthEhmis_HMISDenominator">
+          <Key>
+            <PropertyRef Name="DenominatorID" />
+          </Key>
+          <Property Name="DenominatorID" Type="Int32" Nullable="false" />
+          <Property Name="DenominatorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Healthpost" Type="Boolean" />
+          <Property Name="HealthCenter" Type="Boolean" />
+          <Property Name="Hospital" Type="Boolean" />
+          <Property Name="WoredaHO" Type="Boolean" />
+          <Property Name="ZonalHD" Type="Boolean" />
+          <Property Name="RegionalHB" Type="Boolean" />
+          <Property Name="FMOH" Type="Boolean" />
+          <Property Name="Period" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="v_EthEhmis_AllFacilityWithIDNew">
+          <Key>
+            <PropertyRef Name="HMISCode" />
+            <PropertyRef Name="reportingFacilityTypeId" />
+          </Key>
+          <Property Name="DistrictId" Type="Int32" Nullable="false" />
+          <Property Name="FacilityTypeId" Type="Byte" />
+          <Property Name="FacilityTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="HMISCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FacilityName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="HealthCenterID" Type="Int32" Nullable="false" />
+          <Property Name="HealthCenterName" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="WoredaId" Type="Int32" Nullable="false" />
+          <Property Name="WoredaName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZoneId" Type="Int32" />
+          <Property Name="ZONENAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RegionId" Type="Int32" />
+          <Property Name="ReportingRegionName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ReportingAdminSite" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReportingDistrictId" Type="Int32" />
+          <Property Name="reportingFacilityTypeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EthEhmis_AllFacilityWithID">
+          <Key>
+            <PropertyRef Name="DistrictId" />
+            <PropertyRef Name="FacilityTypeId" />
+            <PropertyRef Name="FacilityTypeName" />
+          </Key>
+          <Property Name="DistrictId" Type="Int64" Nullable="false" />
+          <Property Name="FacilityTypeId" Type="Int32" Nullable="false" />
+          <Property Name="FacilityTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HMISCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FacilityName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="HealthCenterID" Type="Int32" />
+          <Property Name="HealthCenterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WoredaId" Type="Int64" />
+          <Property Name="WoredaName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ZoneId" Type="Int64" />
+          <Property Name="ZoneName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="RegionId" Type="Int32" />
+          <Property Name="ReportingRegionName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ReportingAdminSite" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ReportingDistrictId" Type="Int64" />
+          <Property Name="reportingFacilityTypeId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="EthEHMIS_ImportedFiles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="FileSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserDashboard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dashboardSpec" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dataSQL" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="eHMISModelStoreContainer" CdmEntityContainer="eHMISEntities">
+    <EntitySetMapping Name="EthEhmis_HMISValue">
+      <EntityTypeMapping TypeName="IsTypeOf(eHMISModel.EthEhmis_HMISValue)">
+        <MappingFragment StoreEntitySet="EthEhmis_HMISValue">
+          <ScalarProperty Name="ValueID" ColumnName="ValueID" />
+          <ScalarProperty Name="LabelID" ColumnName="LabelID" />
+          <ScalarProperty Name="DataEleClass" ColumnName="DataEleClass" />
+          <ScalarProperty Name="FederalID" ColumnName="FederalID" />
+          <ScalarProperty Name="RegionID" ColumnName="RegionID" />
+          <ScalarProperty Name="ZoneID" ColumnName="ZoneID" />
+          <ScalarProperty Name="WoredaID" ColumnName="WoredaID" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="Week" ColumnName="Week" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Quarter" ColumnName="Quarter" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="FACILITTYPE" ColumnName="FACILITTYPE" />
+          <ScalarProperty Name="DateEntered" ColumnName="DateEntered" />
+          <ScalarProperty Name="Editable" ColumnName="Editable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EthioHIMS_QuarterHPDiseaseView">
+      <EntityTypeMapping TypeName="IsTypeOf(eHMISModel.EthioHIMS_QuarterHPDiseaseView)">
+        <MappingFragment StoreEntitySet="EthioHIMS_QuarterHPDiseaseView">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SNO" ColumnName="SNO" />
+          <ScalarProperty Name="Disease" ColumnName="Disease" />
+          <ScalarProperty Name="M04" ColumnName="M04" />
+          <ScalarProperty Name="M514" ColumnName="M514" />
+          <ScalarProperty Name="M15" ColumnName="M15" />
+          <ScalarProperty Name="F04" ColumnName="F04" />
+          <ScalarProperty Name="F514" ColumnName="F514" />
+          <ScalarProperty Name="F15" ColumnName="F15" />
+          <ScalarProperty Name="Format" ColumnName="Format" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EthioHIMS_QuarterIPDDiseaseView">
+      <EntityTypeMapping TypeName="IsTypeOf(eHMISModel.EthioHIMS_QuarterIPDDiseaseView)">
+        <MappingFragment StoreEntitySet="EthioHIMS_QuarterIPDDiseaseView">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SNO" ColumnName="SNO" />
+          <ScalarProperty Name="Disease" ColumnName="Disease" />
+          <ScalarProperty Name="M04" ColumnName="M04" />
+          <ScalarProperty Name="M514" ColumnName="M514" />
+          <ScalarProperty Name="M15" ColumnName="M15" />
+          <ScalarProperty Name="F04" ColumnName="F04" />
+          <ScalarProperty Name="F514" ColumnName="F514" />
+          <ScalarProperty Name="F15" ColumnName="F15" />
+          <ScalarProperty Name="MM04" ColumnName="MM04" />
+          <ScalarProperty Name="MM514" ColumnName="MM514" />
+          <ScalarProperty Name="MM15" ColumnName="MM15" />
+          <ScalarProperty Name="MF04" ColumnName="MF04" />
+          <ScalarProperty Name="MF514" ColumnName="MF514" />
+          <ScalarProperty Name="MF15" ColumnName="MF15" />
+          <ScalarProperty Name="Format" ColumnName="Format" />
+          <ScalarProperty Name="userDefined" ColumnName="userDefined" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EthioHIMS_QuarterOPDDiseaseView4">
+      <EntityTypeMapping TypeName="IsTypeOf(eHMISModel.EthioHIMS_QuarterOPDDiseaseView4)">
+        <MappingFragment StoreEntitySet="EthioHIMS_QuarterOPDDiseaseView4">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SNO" ColumnName="SNO" />
+          <ScalarProperty Name="Disease" ColumnName="Disease" />
+          <ScalarProperty Name="M04" ColumnName="M04" />
+          <ScalarProperty Name="M514" ColumnName="M514" />
+          <ScalarProperty Name="M15" ColumnName="M15" />
+          <ScalarProperty Name="F04" ColumnName="F04" />
+          <ScalarProperty Name="F514" ColumnName="F514" />
+          <ScalarProperty Name="F15" ColumnName="F15" />
+          <ScalarProperty Name="Format" ColumnName="Format" />
+          <ScalarProperty Name="userDefined" ColumnName="userDefined" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EthioHIMS_ServiceDataElementsNew">
+      <EntityTypeMapping TypeName="IsTypeOf(eHMISModel.EthioHIMS_ServiceDataElementsNew)">
+        <MappingFragment StoreEntitySet="EthioHIMS_ServiceDataElementsNew">
+          <ScalarProperty Name="Category3" ColumnName="Category3" />
+                <ScalarProperty Name="Category2" ColumnName="Category2" />
+                <ScalarProperty Name="Category1" ColumnName="Category1" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="LabelID" ColumnName="LabelID" />
+          <ScalarProperty Name="SNO" ColumnName="SNO" />
+          <ScalarProperty Name="ActivityHP" ColumnName="ActivityHP" />
+          <ScalarProperty Name="ActivityHC" ColumnName="ActivityHC" />
+          <ScalarProperty Name="ActivityWorHO" ColumnName="ActivityWorHO" />
+          <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+          <ScalarProperty Name="AnalysisDescription" ColumnName="AnalysisDescription" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="ShortActivityDesc" ColumnName="ShortActivityDesc" />
+          <ScalarProperty Name="Lessthan" ColumnName="Lessthan" />
+          <ScalarProperty Name="Greaterthan" ColumnName="Greaterthan" />
+          <ScalarProperty Name="DataType" ColumnName="DataType" />
+          <ScalarProperty Name="LessConstraintId" ColumnName="LessConstraintId" />
+          <ScalarProperty Name="GreaterConstraintId" ColumnName="GreaterConstraintId" />
+          <ScalarProperty Name="VerticalSumID" ColumnName="VerticalSumID" />
+          <ScalarProperty Name="PeriodType" ColumnName="PeriodType" />
+          <ScalarProperty Name="AggregationType" ColumnName="AggregationType" />
+          <ScalarProperty Name="Readonly" ColumnName="Readonly" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="HasChild" ColumnName="HasChild" />
+          <ScalarProperty Name="SequenceNo" ColumnName="SequenceNo" />
+          <ScalarProperty Name="HP" ColumnName="HP" />
+          <ScalarProperty Name="HC" ColumnName="HC" />
+          <ScalarProperty Name="HCHP" ColumnName="HCHP" />
+          <ScalarProperty Name="Hospital" ColumnName="Hospital" />
+          <ScalarProperty Name="WHO" ColumnName="WHO" />
+          <ScalarProperty Name="ZHD" ColumnName="ZHD" />
+          <ScalarProperty Name="RHB" ColumnName="RHB" />
+          <ScalarProperty Name="FMOH" ColumnName="FMOH" />
+          <ScalarProperty Name="Private" ColumnName="Private" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="quarterTitleHC" ColumnName="quarterTitleHC" />
+          <ScalarProperty Name="quarterTitleHP" ColumnName="quarterTitleHP" />
+          <ScalarProperty Name="isArtPastValidate" ColumnName="isArtPastValidate" />
+          </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EthEhmis_HMISDenominator">
+      <EntityTypeMapping TypeName="IsTypeOf(eHMISModel.EthEhmis_HMISDenominator)">
+        <MappingFragment StoreEntitySet="EthEhmis_HMISDenominator">
+          <ScalarProperty Name="DenominatorID" ColumnName="DenominatorID" />
+          <ScalarProperty Name="DenominatorName" ColumnName="DenominatorName" />
+          <ScalarProperty Name="Healthpost" ColumnName="Healthpost" />
+          <ScalarProperty Name="HealthCenter" ColumnName="HealthCenter" />
+          <ScalarProperty Name="Hospital" ColumnName="Hospital" />
+          <ScalarProperty Name="WoredaHO" ColumnName="WoredaHO" />
+          <ScalarProperty Name="ZonalHD" ColumnName="ZonalHD" />
+          <ScalarProperty Name="RegionalHB" ColumnName="RegionalHB" />
+          <ScalarProperty Name="FMOH" ColumnName="FMOH" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <EntitySetMapping Name="v_EthEhmis_AllFacilityWithIDNew">
+            <EntityTypeMapping TypeName="eHMISModel.v_EthEhmis_AllFacilityWithIDNew">
+              <MappingFragment StoreEntitySet="v_EthEhmis_AllFacilityWithIDNew">
+                <ScalarProperty Name="reportingFacilityTypeId" ColumnName="reportingFacilityTypeId" />
+                <ScalarProperty Name="ReportingDistrictId" ColumnName="ReportingDistrictId" />
+                <ScalarProperty Name="ReportingAdminSite" ColumnName="ReportingAdminSite" />
+                <ScalarProperty Name="ReportingRegionName" ColumnName="ReportingRegionName" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="ZONENAME" ColumnName="ZONENAME" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="WoredaName" ColumnName="WoredaName" />
+                <ScalarProperty Name="WoredaId" ColumnName="WoredaId" />
+                <ScalarProperty Name="HealthCenterName" ColumnName="HealthCenterName" />
+                <ScalarProperty Name="HealthCenterID" ColumnName="HealthCenterID" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="HMISCode" ColumnName="HMISCode" />
+                <ScalarProperty Name="FacilityTypeName" ColumnName="FacilityTypeName" />
+                <ScalarProperty Name="FacilityTypeId" ColumnName="FacilityTypeId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EthEhmis_AllFacilityWithID">
+            <EntityTypeMapping TypeName="eHMISModel.EthEhmis_AllFacilityWithID">
+              <MappingFragment StoreEntitySet="EthEhmis_AllFacilityWithID">
+                <ScalarProperty Name="reportingFacilityTypeId" ColumnName="reportingFacilityTypeId" />
+                <ScalarProperty Name="ReportingDistrictId" ColumnName="ReportingDistrictId" />
+                <ScalarProperty Name="ReportingAdminSite" ColumnName="ReportingAdminSite" />
+                <ScalarProperty Name="ReportingRegionName" ColumnName="ReportingRegionName" />
+                <ScalarProperty Name="RegionId" ColumnName="RegionId" />
+                <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="WoredaName" ColumnName="WoredaName" />
+                <ScalarProperty Name="WoredaId" ColumnName="WoredaId" />
+                <ScalarProperty Name="HealthCenterName" ColumnName="HealthCenterName" />
+                <ScalarProperty Name="HealthCenterID" ColumnName="HealthCenterID" />
+                <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+                <ScalarProperty Name="HMISCode" ColumnName="HMISCode" />
+                <ScalarProperty Name="FacilityTypeName" ColumnName="FacilityTypeName" />
+                <ScalarProperty Name="FacilityTypeId" ColumnName="FacilityTypeId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EthEHMIS_ImportedFiles">
+            <EntityTypeMapping TypeName="eHMISModel.EthEHMIS_ImportedFiles">
+              <MappingFragment StoreEntitySet="EthEHMIS_ImportedFiles">
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="User" ColumnName="User" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDashboards">
+            <EntityTypeMapping TypeName="eHMISModel.UserDashboard">
+              <MappingFragment StoreEntitySet="UserDashboards">
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="dataSQL" ColumnName="dataSQL" />
+                <ScalarProperty Name="dashboardSpec" ColumnName="dashboardSpec" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
